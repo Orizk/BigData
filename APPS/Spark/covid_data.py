@@ -42,7 +42,7 @@ sc = spark.sparkContext
 sc.setLogLevel("ERROR")
 ssc = StreamingContext(sc, 10)
 
-directKafkaStream = KafkaUtils.createDirectStream(ssc, ["covid1"], {"metadata.broker.list": "192.168.33.13:9092"})
+directKafkaStream = KafkaUtils.createDirectStream(ssc, ["covid"], {"metadata.broker.list": "192.168.33.13:9092"})
 
 rdd = directKafkaStream.map(lambda line: line[1].split(","))
 rdd.foreachRDD(process)
